@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - GripMaxx</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo">
+    <a href="../index.html">
+        <img src="../images/logo.png" alt="GripMaxx Logo">
+    </a>
+</div>
+
+    <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="product.html">Product</a>
+        <a href="cart.html" id="cartLink">Cart (0)</a>
+        <a href="orders.html" id="ordersLink" style="display:none;">Orders</a>
+        <a href="contact.html">Contact</a>
+<a href="login.html" id="loginLink">Login</a>
+
+<span id="userGreeting" style="display:none; margin-left:10px;"></span>
+
+<a href="#" id="logoutLink" style="display:none;">Logout</a>
+    </nav>
+</header>
+
+<main>
+<section class="checkout-section">
+
+    <h2 class="page-title">Checkout</h2>
+<div class="checkout-container">
+
+          <!-- LEFT SIDE: Customer Details -->
+        <div class="checkout-form">
+            <h3>Shipping Details</h3>
+            <div class="checkout-assurance">
+                <p><strong>Cash on Delivery available</strong></p>
+                <p>Orders are usually reviewed within 1-2 business days after they are placed. You can pay when your order arrives.</p>
+            </div>
+
+            <form id="checkoutForm">
+                <input type="hidden" id="checkoutCsrfToken" name="csrf_token" value="">
+                <div class="checkout-payment-methods">
+                    <p class="checkout-section-label">Payment Method</p>
+                    <label class="checkout-payment-option">
+                        <input type="radio" name="paymentMethod" value="cod" checked>
+                        <span>
+                            <strong>Cash on Delivery</strong>
+                            <small>Keep the current order flow and pay when the order arrives.</small>
+                        </span>
+                    </label>
+                </div>
+
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <input type="text" id="address" placeholder="Address" required>
+                <input type="text" id="city" placeholder="City" required>
+                <input type="text" id="pincode" placeholder="Pincode" required>
+
+                <div id="codSafeguard" class="checkout-safeguard">
+                    <label class="checkout-checkbox-row">
+                        <input type="checkbox" id="codConfirmation">
+                        <span>I confirm this phone number is reachable for delivery confirmation and I may be contacted before dispatch.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="place-order-btn">
+                    Place Order (Cash on Delivery)
+                </button>
+            </form>
+        </div>
+
+        <!-- RIGHT SIDE: Order Summary -->
+        <div class="checkout-summary">
+            <h3>Order Summary</h3>
+            <div class="checkout-help-note">
+                <p><strong>Need help?</strong> Reach us at <span class="store-email">store@gripmaxx.com</span> if you have any order or delivery question.</p>
+            </div>
+
+            <div id="checkoutItems"></div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span id="checkoutShipping">Free Shipping</span>
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="checkoutTotal">Rs.0.00</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- Order Success Modal -->
+<div id="orderSuccessModal" class="modal-overlay">
+
+    <div class="modal-box success-modal">
+
+        <div class="success-icon">&#10003;</div>
+
+        <h3 id="orderSuccessTitle">Order Placed Successfully</h3>
+
+        <p id="orderSuccessText">Your Cash on Delivery order has been received. We will review it shortly and contact you if any delivery clarification is needed.</p>
+
+        <div class="modal-actions">
+            <button id="continueShopping" class="modal-confirm">
+                Continue Shopping
+            </button>
+        </div>
+
+    </div>
+
+</div>
+</main>
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h3>Grip<span class="brand-accent">Maxx</span></h3>
+            <p>Maximize Your Grip. Maximize Your Gains.</p>
+        </div>
+
+        <div class="footer-contact">
+            <p><strong>Email:</strong> <span class="store-email">store@gripmaxx.com</span></p>
+            <p><strong>Phone:</strong> +91 9372753628</p>
+            <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+        </div>
+
+<div class="footer-legal">
+    <p><strong>Legal</strong></p>
+    <p><a href="terms.html">Terms & Conditions</a></p>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p><a href="shipping.html">Shipping Policy</a></p>
+</div>
+
+        <div class="footer-social">
+    <p><strong>Follow Us</strong></p>
+    <p><a href="https://instagram.com/gripmaxx" target="_blank" rel="noopener noreferrer">Instagram: @gripmaxx</a></p>
+    <p><a href="https://facebook.com/gripmaxx" target="_blank" rel="noopener noreferrer">Facebook: GripMaxx Official</a></p>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 GripMaxx. All rights reserved.</p>
+    </div>
+
+</footer>
+
+<script src="../js/script.js"></script>
+<div id="logoutConfirmModal" class="modal-overlay">
+
+<div class="modal-box">
+
+<h3>Logout Confirmation</h3>
+
+<p>Are you sure you want to logout?</p>
+
+<div class="modal-actions">
+
+<button id="cancelUserLogout" class="modal-cancel">
+Cancel
+</button>
+
+<button id="confirmUserLogout" class="modal-confirm">
+Logout
+</button>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

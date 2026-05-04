@@ -1,0 +1,315 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>GripMaxx | Gym Chalk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="main-header">
+
+    <div class="logo">
+    <a href="index.html">
+        <img src="images/logo.png" alt="GripMaxx Logo">
+    </a>
+</div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="pages/product.html">Product</a>
+        <a href="pages/cart.html" id="cartLink">Cart (0)</a>
+        <a href="pages/orders.html" id="ordersLink" style="display:none;">Orders</a>
+        <a href="pages/contact.html">Contact</a>
+        <a href="pages/login.html" id="loginLink">Login</a>
+<span id="userGreeting" style="display:none; margin-left:10px;"></span>
+<a href="#" id="logoutLink" style="display:none;">Logout</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+    Train Better.<br>
+    <span>Lift Stronger.</span>
+</h1>
+    </div>
+</section>
+
+<section class="home-product">
+
+<div class="home-product-container">
+
+<h2 class="section-title">
+Featured Products
+</h2>
+
+<p class="product-desc">
+Get a quick look at our core training essentials, then head to the full catalog to compare variants and place your order.
+</p>
+
+<div id="productList"></div>
+
+<div class="home-product-cta">
+<a href="pages/product.html" class="view-products-btn">View All Products</a>
+</div>
+
+</div>
+
+</div>
+</section>
+<main>
+
+    <section class="about">
+        <div class="about-container">
+
+            <div class="about-image">
+                <img src="images/about.jpg" alt="GripMaxx Training">
+            </div>
+
+            <div class="about-text">
+                <h2>About Grip<span class="brand-accent">Maxx</span></h2>
+
+<p>
+GripMaxx is built for athletes who demand performance and consistency.
+We provide high-quality fitness essentials designed to improve your training,
+enhance your grip, and support your strength journey.
+
+From gym chalk to strength equipment, every product is made to help you
+train harder, perform better, and achieve your fitness goals with confidence.
+
+Because at GripMaxx, we believe:
+<br><br>
+<u>Better Performance starts with Better Gear.</u>
+</p>
+            </div>
+
+        </div>
+    </section>
+
+<section class="features-section">
+    <div class="features-container">
+
+        <div class="features-text">
+            <h2>Why Choose Grip<span class="brand-accent">Maxx</span>?</h2>
+
+<ul>
+<li>High-quality fitness products designed for performance</li>
+<li>Built for strength training, endurance and consistency</li>
+<li>Trusted by athletes and gym enthusiasts</li>
+<li>Designed for real workouts, not just aesthetics</li>
+</ul>
+        </div>
+
+        <div class="features-image">
+            <img src="images/features.jpg" alt="Using Gym Chalk">
+        </div>
+
+    </div>
+</section>
+
+
+</main>
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h3>Grip<span class="brand-accent">Maxx</span></h3>
+            <p>Maximize Your Grip. Maximize Your Gains.</p>
+        </div>
+
+        <div class="footer-contact">
+            <p><strong>Email:</strong> <span class="store-email">store@gripmaxx.com</span></p>
+            <p><strong>Phone:</strong> +91 9372753628</p>
+            <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+        </div>
+
+        <div class="footer-legal">
+    <p><strong>Legal</strong></p>
+    <p><a href="pages/terms.html">Terms & Conditions</a></p>
+    <p><a href="pages/privacy.html">Privacy Policy</a></p>
+    <p><a href="pages/shipping.html">Shipping Policy</a></p>
+</div>
+
+        <div class="footer-social">
+    <p><strong>Follow Us</strong></p>
+    <p><a href="https://instagram.com/gripmaxx" target="_blank" rel="noopener noreferrer">Instagram: @gripmaxx</a></p>
+    <p><a href="https://facebook.com/gripmaxx" target="_blank" rel="noopener noreferrer">Facebook: GripMaxx Official</a></p>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+    <p>
+        &copy; 2026 GripMaxx. All rights reserved.
+        | <a href="admin/login.php">Admin Panel</a>
+    </p>
+</div>
+
+</footer>
+<script src="js/script.js"></script>
+
+<div id="logoutConfirmModal" class="modal-overlay">
+
+<div class="modal-box">
+
+<h3>Logout Confirmation</h3>
+
+<p>Are you sure you want to logout?</p>
+
+<div class="modal-actions">
+
+<button id="cancelUserLogout" class="modal-cancel">
+Cancel
+</button>
+
+<button id="confirmUserLogout" class="modal-confirm">
+Logout
+</button>
+
+</div>
+
+</div>
+
+</div>
+<script>
+fetch("php/session_user.php")
+.then(function(res){
+    return res.json();
+})
+.then(function(sessionData){
+    function formatMoney(amount) {
+        return Number(amount || 0).toFixed(2);
+    }
+
+    const currentUser = sessionData && sessionData.authenticated && sessionData.user ? sessionData.user.username : null;
+    const cartKey = currentUser ? "cartItems:" + currentUser : null;
+    const cartItems = cartKey ? JSON.parse(localStorage.getItem(cartKey) || "[]") : [];
+
+    return fetch("php/get_products.php")
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(products){
+        const container = document.getElementById("productList");
+        const groupedProducts = {};
+        const featuredProductOrder = [
+            "GripMaxx Gym Chalk",
+            "Dumbbell",
+            "Belt"
+        ];
+
+        container.innerHTML = "";
+
+        products.forEach(function(product){
+            if (!groupedProducts[product.name]) {
+                groupedProducts[product.name] = [];
+            }
+
+            groupedProducts[product.name].push(product);
+        });
+
+        let featuredGroups = featuredProductOrder
+        .map(function(productName){
+            return groupedProducts[productName] || null;
+        })
+        .filter(function(group){
+            return Array.isArray(group) && group.length > 0;
+        });
+
+        if (!featuredGroups.length) {
+            featuredGroups = Object.keys(groupedProducts)
+            .map(function(productName){
+                return groupedProducts[productName];
+            })
+            .slice(0, 3);
+        }
+
+        if (!featuredGroups.length) {
+            const emptyState = document.createElement("p");
+            emptyState.style.color = "#aaa";
+            emptyState.textContent = "No featured products are available right now.";
+            container.appendChild(emptyState);
+            return;
+        }
+
+        featuredGroups.forEach(function(group){
+            const firstProduct = group[0];
+            const isPopular = group.some(function(product){
+                return Number(product.is_popular || 0) === 1;
+            });
+            const minPrice = Math.min.apply(null, group.map(function(product){
+                return Number(product.price);
+            }));
+            const totalStock = group.reduce(function(total, product){
+                const reserved = cartItems.reduce(function(sum, item){
+                    return Number(item.id) === Number(product.id) ? sum + Number(item.quantity || 0) : sum;
+                }, 0);
+
+                return total + Math.max(0, Number(product.stock || 0) - reserved);
+            }, 0);
+            const sizes = group.map(function(product){
+                return product.size;
+            }).join(" - ");
+            const card = document.createElement("div");
+
+            card.classList.add("product-card");
+
+            if (totalStock <= 0) {
+                card.classList.add("out-of-stock");
+            }
+
+            if (isPopular) {
+                const badge = document.createElement("span");
+                badge.className = "badge";
+                badge.textContent = "Popular";
+                card.appendChild(badge);
+            }
+
+            const img = document.createElement("img");
+            img.src = "images/" + firstProduct.image;
+            img.alt = firstProduct.name;
+            card.appendChild(img);
+
+            const h3 = document.createElement("h3");
+            h3.textContent = firstProduct.name;
+            card.appendChild(h3);
+
+            const pSizes = document.createElement("p");
+            pSizes.style.color = "#aaa";
+            pSizes.style.fontSize = "14px";
+            pSizes.textContent = sizes;
+            card.appendChild(pSizes);
+
+            const pStock = document.createElement("p");
+            pStock.style.color = "#aaa";
+            pStock.style.fontSize = "14px";
+            pStock.textContent = totalStock <= 0 ? "Out of stock" : "";
+            card.appendChild(pStock);
+
+            const pPrice = document.createElement("p");
+            pPrice.style.fontWeight = "bold";
+            pPrice.textContent = "Starting Rs." + formatMoney(minPrice);
+            card.appendChild(pPrice);
+
+            const productLink = document.createElement("a");
+            productLink.href = "pages/product.html?id=" + firstProduct.id;
+            productLink.className = "product-card-link";
+            productLink.textContent = "View Product";
+            card.appendChild(productLink);
+
+            container.appendChild(card);
+        });
+    });
+})
+.catch(function(){
+    const container = document.getElementById("productList");
+    container.innerHTML = "<p style='color:#aaa;'>Unable to load featured products right now.</p>";
+});
+</script>
+</body>
+
+</html>

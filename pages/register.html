@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - GripMaxx</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="main-header">
+
+<div class="logo">
+<a href="../index.html">
+<img src="../images/logo.png" alt="GripMaxx Logo">
+</a>
+</div>
+
+<nav class="nav-links">
+<a href="../index.html">Home</a>
+<a href="product.html">Product</a>
+<a href="cart.html" id="cartLink">Cart (0)</a>
+<a href="orders.html" id="ordersLink" style="display:none;">Orders</a>
+<a href="contact.html">Contact</a>
+<a href="login.html" id="loginLink">Login</a>
+
+<span id="userGreeting" style="display:none; margin-left:10px;"></span>
+
+<a href="#" id="logoutLink" style="display:none;">Logout</a>
+</nav>
+
+</header>
+
+<main>
+
+<section class="login-section">
+
+<div class="login-card">
+
+<h2>Create Account</h2>
+
+<form id="registerForm">
+
+<div class="input-group">
+<input type="text" id="registerUsername" placeholder="Username" required>
+</div>
+
+<div class="input-group">
+<input type="email" id="registerEmail" placeholder="Email Address" required>
+</div>
+
+<div class="input-group">
+<input type="password" id="registerPassword" placeholder="Password" required>
+</div>
+
+<div class="input-group">
+<input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+</div>
+
+<div class="show-password-row">
+<label>
+<input type="checkbox" id="toggleRegisterPassword"> Show Passwords
+</label>
+</div>
+
+<button type="submit" class="login-btn">Register</button>
+
+<p class="register-text">
+Already have an account? <a href="login.html">Login</a>
+</p>
+
+</form>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="main-footer">
+
+<div class="footer-container">
+
+<div class="footer-brand">
+<h3>Grip<span class="brand-accent">Maxx</span></h3>
+<p>Maximize Your Grip. Maximize Your Gains.</p>
+</div>
+
+<div class="footer-contact">
+<p><strong>Email:</strong> <span class="store-email">store@gripmaxx.com</span></p>
+<p><strong>Phone:</strong> +91 9372753628</p>
+<p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+</div>
+
+<div class="footer-legal">
+<p><strong>Legal</strong></p>
+<p><a href="terms.html">Terms & Conditions</a></p>
+<p><a href="privacy.html">Privacy Policy</a></p>
+<p><a href="shipping.html">Shipping Policy</a></p>
+</div>
+
+<div class="footer-social">
+<p><strong>Follow Us</strong></p>
+<p><a href="https://instagram.com/gripmaxx" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+<p><a href="https://facebook.com/gripmaxx" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>&copy; 2026 GripMaxx. All rights reserved.</p>
+</div>
+
+</footer>
+
+<script src="../js/script.js"></script>
+
+<div id="logoutConfirmModal" class="modal-overlay">
+
+<div class="modal-box">
+
+<h3>Logout Confirmation</h3>
+
+<p>Are you sure you want to logout?</p>
+
+<div class="modal-actions">
+
+<button id="cancelUserLogout" class="modal-cancel">
+Cancel
+</button>
+
+<button id="confirmUserLogout" class="modal-confirm">
+Logout
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

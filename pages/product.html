@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GripMaxx Product</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="main-header">
+
+    <div class="logo">
+    <a href="../index.html">
+        <img src="../images/logo.png" alt="GripMaxx Logo">
+    </a>
+</div>
+
+    <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="product.html">Product</a>
+       <a href="cart.html" id="cartLink">Cart (0)</a>
+        <a href="orders.html" id="ordersLink" style="display:none;">Orders</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" id="loginLink">Login</a>
+
+<span id="userGreeting" style="display:none; margin-left:10px;"></span>
+
+<a href="#" id="logoutLink" style="display:none;">Logout</a>
+    </nav>
+
+</header>
+
+<main>
+<div id="allProductsContainer" style="display:none; padding:40px;">
+</div>
+    <!-- PRODUCT LAYOUT WRAPPER -->
+    <div class="product-layout">
+
+        <!-- LEFT: PRODUCT IMAGE -->
+        <div class="product-left">
+            <img id="productImage" class="product-image">
+        </div>
+
+        <!-- RIGHT: PRODUCT DETAILS -->
+        <div class="product-right">
+            <h2 id="productName"></h2>
+
+            <p id="productDescription" class="product-description"></p>
+
+            <h3>Select Quantity</h3>
+
+           <select id="quantitySelect">
+    <option>Loading...</option>
+</select>
+
+            <p id="stockStatus" class="stock-status">Checking availability...</p>
+
+            <br><br>
+
+            <button id="addToCartBtn">Add to Cart</button>
+            <button id="buyNowBtn" class="buy-now">Buy Now</button>
+        </div>
+
+    </div>
+<div id="cartNotification" class="cart-notification">
+    <span>&#10003; Added to cart</span>
+    <a href="cart.html" class="view-cart-btn">View Cart</a>
+</div>
+</main>
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h3>Grip<span class="brand-accent">Maxx</span></h3>
+            <p>Maximize Your Grip. Maximize Your Gains.</p>
+        </div>
+
+        <div class="footer-contact">
+            <p><strong>Email:</strong> <span class="store-email">store@gripmaxx.com</span></p>
+            <p><strong>Phone:</strong> +91 9372753628</p>
+            <p><strong>Address:</strong> Mumbai, Maharashtra, India</p>
+        </div>
+
+<div class="footer-legal">
+    <p><strong>Legal</strong></p>
+    <p><a href="terms.html">Terms & Conditions</a></p>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p><a href="shipping.html">Shipping Policy</a></p>
+</div>
+
+        <div class="footer-social">
+    <p><strong>Follow Us</strong></p>
+    <p><a href="https://instagram.com/gripmaxx" target="_blank" rel="noopener noreferrer">Instagram: @gripmaxx</a></p>
+    <p><a href="https://facebook.com/gripmaxx" target="_blank" rel="noopener noreferrer">Facebook: GripMaxx Official</a></p>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 GripMaxx. All rights reserved.</p>
+    </div>
+
+</footer>
+<script src="../js/product-page.js"></script>
+
+<div id="logoutConfirmModal" class="modal-overlay">
+
+<div class="modal-box">
+
+<h3>Logout Confirmation</h3>
+
+<p>Are you sure you want to logout?</p>
+
+<div class="modal-actions">
+
+<button id="cancelUserLogout" class="modal-cancel">
+Cancel
+</button>
+
+<button id="confirmUserLogout" class="modal-confirm">
+Logout
+</button>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>
